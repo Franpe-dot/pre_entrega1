@@ -83,3 +83,11 @@ async for chunk in manager.stream(messages):  # streaming
 
 Cambiar de proveedor es solo cambiar `provider` en `ModelConfig` (y el
 `model` correspondiente) — el resto del código no cambia.
+
+## Nota sobre la versión del SDK de Anthropic
+
+`requirements.txt` fija `anthropic<1.0.0`. La serie 1.x del SDK eliminó el
+parámetro `temperature` de `messages.create()` (lo reemplazó por un campo
+`effort`), lo que rompería la validación unificada de temperatura (0–2) que
+pide este ejercicio para ambos proveedores. Con `anthropic<1.0.0` ese
+parámetro sigue existiendo y todo funciona como se espera.
